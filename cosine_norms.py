@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import math
 from numpy import dot
 from numpy.linalg import norm
 
@@ -152,6 +153,19 @@ cos_sim12 = dot(vec_1, vec_2)/(norm(vec_1)*norm(vec_2))
 cos_sim13 = dot(vec_1, vec_3)/(norm(vec_1)*norm(vec_3))
 cos_sim23 = dot(vec_2, vec_3)/(norm(vec_2)*norm(vec_3))
 print(f"{cos_sim12=} {cos_sim13=} {cos_sim23=}")
+
+SCALE_PARAM = 2
+
+n_vec_1 = np.array(vec_1, dtype='float32')
+n_vec_2 = np.array(vec_2, dtype='float32')
+n_vec_3 = np.array(vec_3, dtype='float32')
+dist12 = np.linalg.norm(n_vec_1-n_vec_2)
+sim12 = math.exp(-((dist12**2)/(2*(SCALE_PARAM**2))))
+dist13 = np.linalg.norm(n_vec_1-n_vec_3)
+sim13 = math.exp(-((dist13**2)/(2*(SCALE_PARAM**2))))
+dist23 = np.linalg.norm(n_vec_2-n_vec_3)
+sim23 = math.exp(-((dist23**2)/(2*(SCALE_PARAM**2))))
+print(f"{sim12=} {sim13=} {sim23=}")
 
 
 cv2.imshow('image_1', image_1)
