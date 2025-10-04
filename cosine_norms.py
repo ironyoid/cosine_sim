@@ -26,42 +26,6 @@ def get_boxes(h: list, v: list) -> list:
     return rects
 
 
-def build_grid(boxes: list, bound_box: list) -> dict:
-    CORR_COEF = 5
-    grid = {
-        "vertical": [],
-        "horizontal": [],
-    }
-    min_box = [float('inf'), float('inf'), float('inf'), float('inf')]
-    for b in boxes:
-        if min_box[2]*min_box[3] > b[2]*b[3]:
-            min_box = b
-    cells_x = bound_box[2] // (min_box[2] - CORR_COEF)
-    cells_y = bound_box[3] // (min_box[3] - CORR_COEF)
-    print(f"grid size: {cells_x}, {cells_y}")
-    print(f"min_box: {min_box}")
-    for x in range(cells_x + 1):
-        print(x)
-        grid["vertical"].append(bound_box[0] + min_box[2] * x)
-    for y in range(cells_y + 1):
-        grid["horizontal"].append(bound_box[1] + (min_box[3]+2) * y)
-    return grid
-
-
-def split_helper(rect, wd, hd):
-    x, y, w, h = rect
-    sub_w = w / wd
-    sub_h = h / hd
-
-    rectangles = []
-    for i in range(hd):
-        for j in range(wd):
-            sub_x = x + j * sub_w
-            sub_y = y + i * sub_h
-            rectangles.append([int(sub_x), int(sub_y), int(sub_w), int(sub_h)])
-    return rectangles
-
-
 def split_boxes(boxes: list, bound: list) -> list:
     CORR_COEF = 5
     ret = []
