@@ -136,15 +136,15 @@ def get_vec_from_pic(image):
     return original, rast_vec, grid_cals, grid_rows
 
 
-image_1 = cv2.imread('image_1.png')
+image_1 = cv2.imread('res/image_1.png')
 image_1, vec_1, grid_cals, grid_rows = get_vec_from_pic(image_1)
 print([vec_1[i:i + grid_cals] for i in range(0, len(vec_1), grid_cals)])
 
-image_2 = cv2.imread('image_2.png')
+image_2 = cv2.imread('res/image_2.png')
 image_2, vec_2, grid_cals, grid_rows = get_vec_from_pic(image_2)
 print([vec_2[i:i + grid_cals] for i in range(0, len(vec_2), grid_cals)])
 
-image_3 = cv2.imread('image_3.png')
+image_3 = cv2.imread('res/image_3.png')
 image_3, vec_3, grid_cals, grid_rows = get_vec_from_pic(image_3)
 print([vec_3[i:i + grid_cals] for i in range(0, len(vec_3), grid_cals)])
 
